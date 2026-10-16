@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f6f1">
+  <title>Roomie Reminders</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Roomie Reminders home">
+      <span class="brand-mark" aria-hidden="true">✿</span>
+      <span>roomie <strong>reminders</strong></span>
+    </a>
+    <span class="top-note"><span class="status-dot"></span> little moments, remembered</span>
+  </header>
+
+  <main class="page-shell">
+    <section class="welcome-row">
+      <div>
+        <p class="eyebrow">YOUR HOUSEHOLD BIRTHDAY CALENDAR</p>
+        <h1>Make their day<br><span>a little more special.</span></h1>
+        <p class="intro">Keep your favorite people’s birthdays in one cheerful place.</p>
+      </div>
+      <div class="welcome-art" aria-hidden="true">
+        <span class="sparkle sparkle-one">✦</span>
+        <span class="art-cake">🎂</span>
+        <span class="sparkle sparkle-two">✧</span>
+        <span class="art-note">don’t forget<br>the cake!</span>
+      </div>
+    </section>
+
+    <section class="month-card" aria-labelledby="monthTitle">
+      <div class="month-copy">
+        <p class="eyebrow">A LITTLE MEMORY TRICK</p>
+        <h2 id="monthTitle">October <span id="monthEmoji">🎃</span></h2>
+        <p id="monthCue" class="month-cue">October = pumpkins, cozy sweaters, and birthday treats.</p>
+      </div>
+      <div class="month-controls">
+        <button class="icon-button" id="prevMonth" type="button" aria-label="Previous month">←</button>
+        <button class="today-button" id="thisMonth" type="button">This month</button>
+        <button class="icon-button" id="nextMonth" type="button" aria-label="Next month">→</button>
+      </div>
+    </section>
+
+    <div class="content-grid">
+      <section class="panel calendar-panel" aria-labelledby="calendarHeading">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">THE BIG PICTURE</p>
+            <h2 id="calendarHeading">Birthday calendar</h2>
+          </div>
+          <span class="mini-label"><span class="status-dot"></span> Your crew</span>
+        </div>
+        <div class="calendar-weekdays" aria-hidden="true">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <div id="calendarGrid" class="calendar-grid" aria-label="Monthly birthday calendar"></div>
+        <div class="calendar-legend">
+          <span class="legend-dot"></span>
+          <span>Colored dots and stickers mark birthdays</span>
+        </div>
+      </section>
+
+      <aside class="side-column">
+        <section class="panel add-panel" aria-labelledby="addHeading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ADD TO THE CREW</p>
+              <h2 id="addHeading">Add a roommate</h2>
+            </div>
+            <span class="heading-icon" aria-hidden="true">＋</span>
+          </div>
+          <form id="birthdayForm">
+            <label for="roommateName">Name</label>
+            <input id="roommateName" name="name" type="text" placeholder="e.g. Jamie" maxlength="45" required>
+
+            <label for="birthday">Birthday</label>
+            <input id="birthday" name="birthday" type="date" required>
+
+            <div class="form-split">
+              <div>
+                <label for="roommateColor">Their color</label>
+                <select id="roommateColor" name="color">
+                  <option value="#e98778">Coral</option>
+                  <option value="#79a88a">Sage</option>
+                  <option value="#8e91d5">Lavender</option>
+                  <option value="#e2b64e">Marigold</option>
+                  <option value="#6da8c7">Sky blue</option>
+                  <option value="#d77da9">Pink</option>
+                  <option value="#b28c6b">Mocha</option>
+                </select>
+              </div>
+              <div>
+                <label for="roommateSticker">Their sticker</label>
+                <select id="roommateSticker" name="sticker">
+                  <option value="🐸">🐸 Frog</option>
+                  <option value="🐱">🐱 Cat</option>
+                  <option value="🐼">🐼 Panda</option>
+                  <option value="🐝">🐝 Bee</option>
+                  <option value="🦋">🦋 Butterfly</option>
+                  <option value="🍓">🍓 Strawberry</option>
+                  <option value="🌞">🌞 Sun</option>
+                  <option value="🍄">🍄 Mushroom</option>
+                  <option value="🪩">🪩 Disco ball</option>
+                  <option value="🐢">🐢 Turtle</option>
+                </select>
+              </div>
+            </div>
+            <button class="primary-button" type="submit">＋ Add birthday</button>
+            <p class="form-hint">Tip: give everyone their own color and sticker so they’re easy to spot.</p>
+            <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="panel upcoming-panel" aria-labelledby="upcomingHeading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">COMING UP</p>
+              <h2 id="upcomingHeading">Next birthdays</h2>
+            </div>
+            <span id="upcomingCount" class="count-pill">0</span>
+          </div>
+          <div id="upcomingList" class="upcoming-list"></div>
+        </section>
+      </aside>
+    </div>
+
+    <section class="panel crew-panel" aria-labelledby="crewHeading">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">THE PEOPLE WHO MAKE IT HOME</p>
+          <h2 id="crewHeading">Meet the crew</h2>
+        </div>
+        <span id="crewCount" class="mini-label">0 roommates</span>
+      </div>
+      <div id="crewList" class="crew-list"></div>
+    </section>
+
+    <footer class="page-footer">
+      <span>Made with a little love <span aria-hidden="true">♡</span></span>
+      <span id="storageNote">Saved in this browser</span>
+    </footer>
+  </main>
+
+  <dialog id="birthdayDialog" class="birthday-dialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Close" value="close">×</button>
+      <div id="dialogSticker" class="dialog-sticker">🎉</div>
+      <p class="eyebrow">SAVE THE DATE</p>
+      <h2 id="dialogTitle">Birthday</h2>
+      <p id="dialogDate" class="dialog-date"></p>
+      <p id="dialogAge" class="dialog-note"></p>
+      <button class="primary-button dialog-done" value="close">Lovely, got it!</button>
+    </form>
+  </dialog>
+</body>
+</html>
