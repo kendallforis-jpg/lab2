@@ -1,17 +1,25 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f8f6f1">
+
   <title>Roomie Reminders</title>
+
+  <!-- Progressive Web App manifest -->
   <link rel="manifest" href="./manifest.json">
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
+
+  <!-- Existing stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Existing JavaScript -->
+  <script src="./app.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Roomie Reminders home">
+    <a class="brand" href="./" aria-label="Roomie Reminders home">
       <span class="brand-mark" aria-hidden="true">✿</span>
       <span>roomie <strong>reminders</strong></span>
     </a>
@@ -55,10 +63,14 @@
           </div>
           <span class="mini-label"><span class="status-dot"></span> Your crew</span>
         </div>
+
         <div class="calendar-weekdays" aria-hidden="true">
-          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          <span>Sun</span><span>Mon</span><span>Tue</span>
+          <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
         </div>
+
         <div id="calendarGrid" class="calendar-grid" aria-label="Monthly birthday calendar"></div>
+
         <div class="calendar-legend">
           <span class="legend-dot"></span>
           <span>Colored dots and stickers mark birthdays</span>
@@ -74,9 +86,17 @@
             </div>
             <span class="heading-icon" aria-hidden="true">＋</span>
           </div>
+
           <form id="birthdayForm">
             <label for="roommateName">Name</label>
-            <input id="roommateName" name="name" type="text" placeholder="e.g. Jamie" maxlength="45" required>
+            <input
+              id="roommateName"
+              name="name"
+              type="text"
+              placeholder="e.g. Jamie"
+              maxlength="45"
+              required
+            >
 
             <label for="birthday">Birthday</label>
             <input id="birthday" name="birthday" type="date" required>
@@ -94,6 +114,7 @@
                   <option value="#b28c6b">Mocha</option>
                 </select>
               </div>
+
               <div>
                 <label for="roommateSticker">Their sticker</label>
                 <select id="roommateSticker" name="sticker">
@@ -110,7 +131,9 @@
                 </select>
               </div>
             </div>
+
             <button class="primary-button" type="submit">＋ Add birthday</button>
+
             <p class="form-hint">Tip: give everyone their own color and sticker so they’re easy to spot.</p>
             <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
           </form>
@@ -124,6 +147,7 @@
             </div>
             <span id="upcomingCount" class="count-pill">0</span>
           </div>
+
           <div id="upcomingList" class="upcoming-list"></div>
         </section>
       </aside>
@@ -137,6 +161,7 @@
         </div>
         <span id="crewCount" class="mini-label">0 roommates</span>
       </div>
+
       <div id="crewList" class="crew-list"></div>
     </section>
 
@@ -157,7 +182,9 @@
       <button class="primary-button dialog-done" value="close">Lovely, got it!</button>
     </form>
   </dialog>
-    <script>
+
+  <!-- Register the Progressive Web App service worker -->
+  <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./sw.js", {
@@ -171,3 +198,4 @@
   </script>
 </body>
 </html>
+
